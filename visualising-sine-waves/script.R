@@ -37,7 +37,6 @@ animation <- df %>%
   # annotate("text", label = "Cosine wave: cos(x)", col = cols[1], x = -3 * pi, y = 0.9,
   #          family = "Raleway", size = 4.5, fontface = "bold", hjust = 0) +
   theme(legend.position = "top",
-        plot.margin = unit(c(4, 1, 1, 1), "lines"),
         legend.title = element_blank(),
         legend.text = element_text(face = "bold"),
         legend.spacing.x = unit(0.3, 'cm')) +
