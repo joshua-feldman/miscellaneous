@@ -46,4 +46,4 @@ animation <- df %>%
   ease_aes("linear") +
   shadow_mark(alpha = 0.5)
 
-animate(animation, height = 800, width = 1000)
+animate(animation, height = 675, width = 1200)
