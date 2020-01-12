@@ -45,4 +45,4 @@ anim <- df_long %>%
     filter16 = value < 16
   )
 
-animate(anim, fps = 20)
+animate(anim, fps = 50)
