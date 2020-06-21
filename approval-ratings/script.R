@@ -60,7 +60,7 @@ final %>%
   # geom_text(label="INCOMING\nPRESIDENT", x=2.4, y=mean(final1$new), size=6,
   #           col = "white", family = "Raleway") +
   labs(title = "Presidential approval ratings between transitions of power",
-       subtitle = "Only three Presidents have begun their tenure with a lower approval rating than their predecessors – George H. W.\nBush (1989), George W. Bush (2001) and Donald Trump (2017). There has never been a decline in approval when\ntransitioning to a Democratic presidency.",
+       subtitle = "Only three Presidents have begun their tenure with a lower approval rating than their predecessors – George H. W.\nBush (1989), George W. Bush (2001) and Donald Trump (2017). There has never been a decline when transitioning\nto a Democratic presidency.",
        y = "Approval rating",
        caption = "Source: Gallup Approval Polls\nGraphic: @JoshuaFeldman") +
   xlim(.5, 2.5) +
