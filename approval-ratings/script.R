@@ -59,16 +59,16 @@ final %>%
   #           col = "white", family = "Raleway") +
   # geom_text(label="INCOMING\nPRESIDENT", x=2.4, y=mean(final1$new), size=6,
   #           col = "white", family = "Raleway") +
-  labs(title = "Approval rating before and after presidential transitions",
+  labs(title = "Presidential approval ratings between transitions of power",
        subtitle = "Since the 1940s, only three Presidents have begun their tenure with a lower approval rating than their predecessors –\nGeorge H. W. Bush (1989), George W. Bush (2001) and Donald Trump (2017). There has never been a decline in approval\nrating when going from a Republican to a Democrat.",
        y = "Approval rating",
-       caption = "Graphic: Joshua Feldman") +
+       caption = "Source: Gallup Approval Polls\nGraphic: @JoshuaFeldman") +
   xlim(.5, 2.5) +
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         axis.ticks.x = element_blank(),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
-        plot.subtitle = element_text(margin = margin(0, 0, 10, 0))) +
+        plot.subtitle = element_text(margin = margin(0, 0, 15, 0))) +
   facet_wrap(~type) +
-  scale_color_manual(values = c("#cf1e25", "#238823"))
+  scale_color_manual(values = c("#dd0808", "#0add08"))
