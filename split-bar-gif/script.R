@@ -11,7 +11,7 @@ setwd("~/Github/miscellaneous/split-bar-gif")
 col_fill <- "black"
 col_bg <- "#ff69b4"
 
-gif <- image_read("marilyn.gif") %>%
+gif <- image_read("snoop.gif") %>%
   image_convert(colorspace = "gray")
 
 gif_w <- image_info(gif)$width
@@ -63,11 +63,11 @@ img_list <- lapply(imgs, image_read)
 ## Join images together
 img_joined <- image_join(img_list)
 
-## Animate
+## Animate (Note: you may need to adjust the FPS parameter according to the frame rate of your GIF)
 img_animated <- image_animate(img_joined, fps = 5)
 
 ## View animated images
 img_animated
 
 ## Save to disk
-image_write(image = img_animated, path = "marilyn_new.gif")
+image_write(image = img_animated, path = "snoop_new.gif")
