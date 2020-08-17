@@ -25,9 +25,11 @@ if (gif_w[1] >= gif_h[1]) {
 
 # Loop through frames of GIF
 for(i in 1:length(gif)) {
-  
+
+  # Create array for each frame
   assign(paste0("gif_array", i), drop(as.integer(gif[[i]])))
   
+  # Create data table for each frame
   assign(paste0("gif_df", i), as.data.frame.table(eval(as.name(paste0("gif_array", i)))) %>% 
     `colnames<-`(c("y", "x", "b")) %>% 
     mutate(
@@ -35,8 +37,10 @@ for(i in 1:length(gif)) {
       bf = 1 - b / 255
     ))
   
+  # Allocate file path for saving plots to disk
   fp <- file.path("frames", paste0("frame", i, ".png"))
   
+  # Create plot for each frame
   p <- ggplot(eval(as.name(paste0("gif_df", i)))) +
     geom_rect(aes(xmin = x, xmax = x + bf * 0.9, ymin = y, ymax = y + 0.85), fill = col_fill, color = NA) +
     scale_y_reverse() +
@@ -44,6 +48,7 @@ for(i in 1:length(gif)) {
     theme_void() +
     theme(legend.position = "none", plot.background = element_rect(fill = col_bg, color = NA))
   
+  # Save each plot to disk
   ggsave(plot = p, 
          filename = fp, 
          device = "png")
