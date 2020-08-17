@@ -11,7 +11,7 @@ setwd("~/Github/miscellaneous/split-bar-gif")
 col_fill <- "black"
 col_bg <- "#ff69b4"
 
-gif <- image_read("snoop.gif") %>%
+gif <- image_read("marilyn.gif") %>%
   image_convert(colorspace = "gray")
 
 gif_w <- image_info(gif)$width
@@ -70,4 +70,4 @@ img_animated <- image_animate(img_joined, fps = 5)
 img_animated
 
 ## Save to disk
-image_write(image = img_animated, path = "snoop_new.gif")
+image_write(image = img_animated, path = "marilyn_new.gif")
