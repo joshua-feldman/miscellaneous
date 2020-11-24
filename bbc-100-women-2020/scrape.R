@@ -64,4 +64,4 @@ df <- data.frame(
 
 # Export
 
-write.csv(df, "data.csv")
+write.csv(df, "data.csv", row.names=FALSE)
