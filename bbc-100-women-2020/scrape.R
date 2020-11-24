@@ -3,8 +3,6 @@
 library(rvest)
 library(tidyverse)
 
-card__header__strapline__instagram
-
 # Load web page
 
 bbc_women <- html("https://www.bbc.co.uk/news/world-55042935")
