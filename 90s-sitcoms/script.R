@@ -1,19 +1,11 @@
 library(tidyverse)
 library(rvest)
 library(extrafont)
-# library(showtext)
-# 
-# font_add_google("Nunito")
-# showtext_auto(enable = TRUE)
+library(ggtext)
+library(glue)
 
 main_color <- "#2e2e2e"
-
-palette3 <- c("#003f5c", "#bc5090", "#ffa600")
-palette4 <- c("#003f5c", "#7a5195", "#ef5675", "#ffa600")
-palette5 <- c("#003f5c", "#58508d", "#bc5090", "#ff6361", "#ffa600")
-palette6 <- c("#003f5c", "#444e86", "#955196", "#dd5182", "#ff6e54", "#ffa600")
-palette7 <- c("#003f5c", "#374c80", "#7a5195", "#bc5090", "#ef5675", "#ff764a", "#ffa600")
-palette8 <- c("#003f5c", "#2f4b7c", "#665191", "#a05195", "#d45087", "#f95d6a", "#ff7c43", "#ffa600")
+palette <- c("#003f5c", "#58508d", "#bc5090", "#ff6361", "#ffa600")
 
 th <- theme_minimal(base_size = 18) +
   theme(text = element_text(family = "Roboto", color = "white"),
@@ -82,6 +74,7 @@ frasier_df_new <- frasier_df[2:nrow(frasier_df), 2:ncol(frasier_df)] %>%
   mutate(viewers = as.numeric(viewers)) %>% 
   mutate(show = "Frasier")
 
+# Combine datasets
 df <- seinfeld_df_new %>% 
   rbind(friends_df_new) %>% 
   rbind(frasier_df_new) %>% 
@@ -99,20 +92,13 @@ df <- seinfeld_df_new %>%
   mutate(label = paste0("S", season)) %>% 
   mutate(label = ifelse(show == "Friends" & label == "S5", NA, label))
 
-library(ggtext)
-library(glue)
-
-palette5[c(5, 4, 3)]
-
-palette5[5]
-
-
+# Make labels
 subtitle <- "<span style='color:#bc5090'>**Seinfeld**</span> became increasingly popular during its original run, with the final season attracting an average of 35.5M viewers per episode – up from 19.2M<br>in Season 1. <span style='color:#ff6361'>**Friends**</span> peaked in Season 2, while <span style='color:#ffa600'>**Frasier**</span> never bettered its first season's ratings."
-
 label1 <- "<span style='color:#bc5090;'>**Seinfeld**</span> surged in popularity between Seasons<br>4 and 5 following a number of classic episodes<br>like The Contest, in which the characters compete<br>to see who can go the longest without masturbating."
 label2 <- "<span style='color:#ff6361;'>**Friends**</span> peaked in Season 2, when Ross<br>and Rachel began perhaps the most famous<br>romance in sitcom history."
 label3 <- "<span style='color:#ffa600;'>**Frasier**</span> surpassed Friends in Seasons 6 and 7<br>after taking Seinfeld's time slot. However, the<br>show's ratings then slipped, falling below 15M<br>in the final two seasons."
 
+# Plot
 df %>%
   ggplot(aes(first_aired, viewers, color = show, label = label)) +
   geom_errorbarh(aes(xmin = first_aired, xmax = last_aired), lwd = 1) +
@@ -136,14 +122,14 @@ df %>%
              color = "white",
              curvature = -0.5,
              ncp = 10) +
-  scale_color_manual(values = palette5[c(5, 4, 3)]) +
+  scale_color_manual(values = palette[c(5, 4, 3)]) +
   annotate("richtext",  x = as.Date("1989-03-01"), y = 24.5, fill = NA, label.color = NA,
            label = label1, color = "white", family = "Roboto Light", hjust = 0) +
   annotate("richtext",  x = as.Date("1996-10-01"), y = 29, fill = NA, label.color = NA,
            label = label2, color = "white", family = "Roboto Light", hjust = 0) +
   annotate("richtext",  x = as.Date("1997-01-01"), y = 15, fill = NA, label.color = NA,
            label = label3, color = "white", family = "Roboto Light", hjust = 0) +
-  annotate("text", label = "S5", x = as.Date("1999-01-21"), y = 23, color = palette5[4],
+  annotate("text", label = "S5", x = as.Date("1999-01-21"), y = 23, color = palette[4],
            family = "Roboto", fontface = "bold", size = 4) +
   labs(title = "TV ratings of American 90s sitcoms",
        subtitle = subtitle,
